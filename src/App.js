@@ -2,6 +2,7 @@ import React from 'react';
 
 import Info from './components/Info';
 import Education from './components/Education';
+import Employment from './components/Employment';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends React.Component {
       <div>
         <Info />
         <Education />
-        employment
+        <Employment />
       </div>
     );
   }

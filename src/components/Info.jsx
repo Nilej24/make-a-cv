@@ -9,18 +9,20 @@ class Info extends React.Component {
       lastName: 'LastName',
       email: 'me@mail.com',
       phone: '07696969696',
+      description: 'some info about me',
     };
   }
 
   render() {
-    const { firstName, lastName, email, phone } = this.state;
+    const { firstName, lastName, email, phone, description } = this.state;
 
     return (
       <div>
-        <h1>{firstName} {lastName}</h1>
         <button>edit</button>
-        <div>email: {email}</div>
-        <div>phone: {phone}</div>
+        <h1>{firstName} {lastName}</h1>
+        <p>email: {email}</p>
+        <p>phone: {phone}</p>
+        <p>{description}</p>
       </div>
     );
   }
