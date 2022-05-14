@@ -1,5 +1,8 @@
 import React from 'react';
 
+import InfoForm from './InfoForm';
+import EditToggleBtn from './EditToggleBtn';
+
 class Info extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +20,9 @@ class Info extends React.Component {
     const { firstName, lastName, email, phone, description } = this.state;
 
     return (
-      <div>
-        <button>edit</button>
+      <div className="Info">
+        <EditToggleBtn />
+        <InfoForm data={this.state} />
         <h1>{firstName} {lastName}</h1>
         <p>email: {email}</p>
         <p>phone: {phone}</p>

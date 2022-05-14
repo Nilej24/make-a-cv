@@ -1,5 +1,7 @@
 import React from 'react';
 
+import EditToggleBtn from './EditToggleBtn';
+
 function Job(title, company, startDate, endDate, description) {
   return {title, company, startDate, endDate, description};
 }
@@ -8,11 +10,15 @@ class Employment extends React.Component {
   constructor(props) {
     super(props);
 
-    const description = 'some info about my job';
-
     this.state = {
       jobs: [
-        Job('Job Title', 'Company I Worked for', 'January 2019', 'December 2019', description),
+        Job(
+          'Job Title',
+          'Company I Worked for',
+          'January 2019',
+          'December 2019',
+          'some info about the job'
+        ),
       ],
     };
   }
@@ -20,7 +26,7 @@ class Employment extends React.Component {
   render() {
     return (
       <div>
-        <button>edit</button>
+        <EditToggleBtn />
         <h2>Employment</h2>
         {this.state.jobs.map((job) => {
           const {title, company, startDate, endDate, description} = job;

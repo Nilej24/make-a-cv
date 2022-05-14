@@ -1,5 +1,9 @@
 import React from 'react';
 
+import './Education.scss';
+
+import EditToggleBtn from './EditToggleBtn';
+
 function Course(name, school, startDate, endDate, description) {
   return {name, school, startDate, endDate, description};
 }
@@ -8,19 +12,23 @@ class Education extends React.Component {
   constructor(props) {
     super(props);
 
-    const description = 'some info about the course I took';
-
     this.state = {
       courses: [
-        Course('Course', 'School I Took the Course at', 'January 2018', 'December 2018', description),
+        Course(
+          'Course',
+          'School I Took the Course at',
+          'January 2018',
+          'December 2018',
+          'some info about the course I took',
+        ),
       ],
     };
   }
 
   render() {
     return (
-      <div>
-        <button>edit</button>
+      <div className="Education">
+        <EditToggleBtn />
         <h2>Education</h2>
         {this.state.courses.map((course) => {
           const {name, school, startDate, endDate, description} = course;
