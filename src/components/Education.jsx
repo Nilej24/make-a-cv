@@ -33,17 +33,27 @@ class Education extends React.Component {
     });
   }
 
+  deleteBtnClick = (index) => {
+    const newCoursesArray = [...this.state.courses];
+    newCoursesArray.splice(index, 1);
+
+    this.setState({
+      courses: newCoursesArray,
+    });
+  }
+
   render() {
     return (
       <div className="Education">
         <EditToggleBtn />
         <AddToListForm sectionName="education" numberOfInputs='5' addToList={this.addToCourses} />
         <h2>Education</h2>
-        {this.state.courses.map((course) => {
+        {this.state.courses.map((course, index) => {
           const {name, school, startDate, endDate, description} = course;
           
           return (
             <div>
+              <button className="deleteBtn" onClick={() => this.deleteBtnClick(index)}>x</button>
               <h3>{name}</h3>
               <p>{school}</p>
               <p>{startDate} - {endDate}</p>

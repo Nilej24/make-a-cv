@@ -33,17 +33,27 @@ class Employment extends React.Component {
     });
   }
 
+  deleteBtnClick = (index) => {
+    const newJobsArray = [...this.state.jobs];
+    newJobsArray.splice(index, 1);
+
+    this.setState({
+      jobs: newJobsArray,
+    });
+  }
+
   render() {
     return (
       <div>
         <EditToggleBtn />
         <AddToListForm sectionName="employment" numberOfInputs='5' addToList={this.addToJobs} />
         <h2>Employment</h2>
-        {this.state.jobs.map((job) => {
+        {this.state.jobs.map((job, index) => {
           const {title, company, startDate, endDate, description} = job;
           
           return (
             <div>
+              <button className="deleteBtn" onClick={() => this.deleteBtnClick(index)}>x</button>
               <h3>{title}</h3>
               <p>{company}</p>
               <p>{startDate} - {endDate}</p>
