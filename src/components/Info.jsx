@@ -16,13 +16,27 @@ class Info extends React.Component {
     };
   }
 
+  handleFormSubmit = (ev) => {
+    ev.preventDefault();
+
+    const firstName = document.querySelector('#fname-edit').value;
+    const lastName = document.querySelector('#lname-edit').value;
+    const email = document.querySelector('#email-edit').value;
+    const phone = document.querySelector('#phone-edit').value;
+    const description = document.querySelector('#info-description-edit').value;
+
+    this.setState({
+      firstName, lastName, email, phone, description
+    });
+  }
+
   render() {
     const { firstName, lastName, email, phone, description } = this.state;
 
     return (
       <div className="Info">
         <EditToggleBtn />
-        <InfoForm data={this.state} />
+        <InfoForm data={this.state} handleSubmit={this.handleFormSubmit} />
         <h1>{firstName} {lastName}</h1>
         <p>email: {email}</p>
         <p>phone: {phone}</p>

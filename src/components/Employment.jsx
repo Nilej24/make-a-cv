@@ -1,6 +1,7 @@
 import React from 'react';
 
 import EditToggleBtn from './EditToggleBtn';
+import AddToListForm from './AddToListForm';
 
 function Job(title, company, startDate, endDate, description) {
   return {title, company, startDate, endDate, description};
@@ -16,17 +17,27 @@ class Employment extends React.Component {
           'Job Title',
           'Company I Worked for',
           'January 2019',
-          'December 2019',
+          'Present',
           'some info about the job'
         ),
       ],
     };
   }
 
+  addToJobs = (jobArgs) => {
+    this.setState({
+      jobs: [
+        ...this.state.jobs,
+        Job(...jobArgs),
+      ],
+    });
+  }
+
   render() {
     return (
       <div>
         <EditToggleBtn />
+        <AddToListForm sectionName="employment" numberOfInputs='5' addToList={this.addToJobs} />
         <h2>Employment</h2>
         {this.state.jobs.map((job) => {
           const {title, company, startDate, endDate, description} = job;

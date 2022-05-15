@@ -1,8 +1,7 @@
 import React from 'react';
 
-import './Education.scss';
-
 import EditToggleBtn from './EditToggleBtn';
+import AddToListForm from './AddToListForm';
 
 function Course(name, school, startDate, endDate, description) {
   return {name, school, startDate, endDate, description};
@@ -25,10 +24,20 @@ class Education extends React.Component {
     };
   }
 
+  addToCourses = (courseArgs) => {
+    this.setState({
+      courses: [
+        ...this.state.courses,
+        Course(...courseArgs),
+      ],
+    });
+  }
+
   render() {
     return (
       <div className="Education">
         <EditToggleBtn />
+        <AddToListForm sectionName="education" numberOfInputs='5' addToList={this.addToCourses} />
         <h2>Education</h2>
         {this.state.courses.map((course) => {
           const {name, school, startDate, endDate, description} = course;
