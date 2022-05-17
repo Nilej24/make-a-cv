@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 function InfoForm(props) {
   const { firstName, lastName, email, phone, description } = props.data;
+
+  const test = useRef();
 
   return (
     <form className="hidden" onSubmit={props.handleSubmit}>
       <div>
         <label htmlFor="fname-edit">first name</label>
-        <input id="fname-edit" type="text" defaultValue={firstName} />
+        <input ref={test} id="fname-edit" type="text" defaultValue={firstName} />
       </div>
       <div>
         <label htmlFor="lname-edit">last name</label>
