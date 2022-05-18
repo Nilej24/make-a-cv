@@ -1,31 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class EditToggleBtn extends React.Component {
-  constructor(props) {
-    super(props);
+function EditToggleBtn(props) {
 
-    this.state = {
-      editing: false,
-    };
-  }
+  const [editing, setEditing] = useState(false);
 
-  handleClick = (ev) => {
+  const handleClick = (ev) => {
     const adjForm = ev.target.nextElementSibling;
-
-    this.setState({
-      editing: !this.state.editing,
-    });
-
     adjForm.classList.toggle('hidden');
+
+    setEditing(!editing);
   }
 
-  render() {
-    return (
-      <button type="button" onClick={this.handleClick}>
-        {this.state.editing ? 'done' : 'edit'}
-      </button>
-    );
-  }
+  return (
+    <button type="button" onClick={handleClick}>
+      {editing ? 'done' : 'edit'}
+    </button>
+  );
 }
 
 export default EditToggleBtn;

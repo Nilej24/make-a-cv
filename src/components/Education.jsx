@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import EditToggleBtn from './EditToggleBtn';
 import AddToListForm from './AddToListForm';
@@ -7,63 +7,52 @@ function Course(name, school, startDate, endDate, description) {
   return {name, school, startDate, endDate, description};
 }
 
-class Education extends React.Component {
-  constructor(props) {
-    super(props);
+function Education(props) {
 
-    this.state = {
-      courses: [
-        Course(
-          'Course',
-          'School I Took the Course at',
-          'January 2018',
-          'December 2018',
-          'some info about the course I took',
-        ),
-      ],
-    };
+  const [courses, setCourses] = useState([
+   Course(
+      'Course',
+      'School I Took the Course at',
+      'January 2018',
+      'December 2018',
+      'some info about the course I took',
+    )
+  ]);
+
+  const addToCourses = (courseArgs) => {
+    setCourses([
+      ...courses,
+      Course(...courseArgs),
+    ]);
   }
 
-  addToCourses = (courseArgs) => {
-    this.setState({
-      courses: [
-        ...this.state.courses,
-        Course(...courseArgs),
-      ],
-    });
-  }
-
-  deleteBtnClick = (index) => {
-    const newCoursesArray = [...this.state.courses];
+  const deleteBtnClick = (index) => {
+    const newCoursesArray = [...courses];
     newCoursesArray.splice(index, 1);
 
-    this.setState({
-      courses: newCoursesArray,
-    });
+    setCourses(newCoursesArray);
   }
 
-  render() {
-    return (
-      <div className="Education">
-        <EditToggleBtn />
-        <AddToListForm sectionName="education" numberOfInputs='5' addToList={this.addToCourses} />
-        <h2>Education</h2>
-        {this.state.courses.map((course, index) => {
-          const {name, school, startDate, endDate, description} = course;
-          
-          return (
-            <div>
-              <button className="deleteBtn" onClick={() => this.deleteBtnClick(index)}>x</button>
-              <h3>{name}</h3>
-              <p>{school}</p>
-              <p>{startDate} - {endDate}</p>
-              <p>{description}</p>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
+  return (
+    <div className="Education">
+      <EditToggleBtn />
+      <AddToListForm sectionName="education" numberOfInputs='5' addToList={addToCourses} />
+      <h2>Education</h2>
+      {courses.map((course, index) => {
+        const {name, school, startDate, endDate, description} = course;
+        
+        return (
+          <div>
+            <button className="deleteBtn" onClick={() => deleteBtnClick(index)}>x</button>
+            <h3>{name}</h3>
+            <p>{school}</p>
+            <p>{startDate} - {endDate}</p>
+            <p>{description}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default Education;
