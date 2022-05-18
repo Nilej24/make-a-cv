@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 function AddToListForm(props) {
+
+  const refs = [
+    useRef(), useRef(), useRef(), useRef(), useRef()
+  ];
 
   const addToParentList = (ev) => {
     ev.preventDefault();
@@ -8,7 +12,7 @@ function AddToListForm(props) {
     const factoryArgs = [];
     
     for (let i = 0; i < props.numberOfInputs; i += 1) {
-      const value = document.querySelector('#' + props.sectionName + i).value;
+      const value = refs[i].current.value;
       factoryArgs.push(value);
     }
 
@@ -17,13 +21,11 @@ function AddToListForm(props) {
     ev.target.reset();
   }
 
-  const {sectionName} = props;
-
   const labels =[
     'course name', 'school', 'start date', 'end date', 'description'
   ]
   
-  switch(sectionName) {
+  switch(props.sectionName) {
     case 'education':
       break;
     case 'employment':
@@ -37,24 +39,24 @@ function AddToListForm(props) {
   return (
     <form className="hidden" onSubmit={addToParentList}>
       <div>
-        <label htmlFor={sectionName + '0'}>{labels[0]}</label>
-        <input type="text" id={sectionName + '0'} />
+        <label>{labels[0]}</label>
+        <input ref={refs[0]} type="text" />
       </div>
       <div>
-        <label htmlFor={sectionName + '1'}>{labels[1]}</label>
-        <input type="text" id={sectionName + '1'} />
+        <label>{labels[1]}</label>
+        <input ref={refs[1]} type="text" />
       </div>
       <div>
-        <label htmlFor={sectionName + '2'}>{labels[2]}</label>
-        <input type="text" id={sectionName + '2'} />
+        <label>{labels[2]}</label>
+        <input ref={refs[2]} type="text" />
       </div>
       <div>
-        <label htmlFor={sectionName + '3'}>{labels[3]}</label>
-        <input type="text" id={sectionName + '3'} />
+        <label>{labels[3]}</label>
+        <input ref={refs[3]} type="text" />
       </div>
       <div>
-        <label htmlFor={sectionName + '4'}>{labels[4]}</label>
-        <textarea id={sectionName + '4'} cols="30" rows="10"></textarea>
+        <label>{labels[4]}</label>
+        <textarea ref={refs[4]} cols="30" rows="10"></textarea>
       </div>
       <button>add</button>
     </form>
