@@ -3,29 +3,39 @@ import React, { useRef } from 'react';
 function InfoForm(props) {
   const { firstName, lastName, email, phone, description } = props.data;
 
-  const test = useRef();
+  const { fnInput, lnInput, emailInput, phoneInput, descInput } = props.refs;
 
   return (
     <form className="hidden" onSubmit={props.handleSubmit}>
       <div>
-        <label htmlFor="fname-edit">first name</label>
-        <input ref={test} id="fname-edit" type="text" defaultValue={firstName} />
+        <label>
+          first name
+          <input ref={fnInput} type="text" defaultValue={firstName} />
+        </label>
       </div>
       <div>
-        <label htmlFor="lname-edit">last name</label>
-        <input id="lname-edit" type="text" defaultValue={lastName} />
+        <label>
+          last name
+          <input ref={lnInput} type="text" defaultValue={lastName} />
+        </label>
       </div>
       <div>
-        <label htmlFor="email-edit">email</label>
-        <input id="email-edit" type="text" defaultValue={email} />
+        <label>
+          email
+          <input ref={emailInput} type="text" defaultValue={email} />
+        </label>
       </div>
       <div>
-        <label htmlFor="phone-edit">phone</label>
-        <input id="phone-edit" type="number" defaultValue={phone} />
+        <label>
+          phone
+          <input ref={phoneInput} type="number" defaultValue={phone} />
+        </label>
       </div>
       <div>
-        <label htmlFor="info-description-edit">description</label>
-        <textarea id="info-description-edit" cols="30" rows="10" defaultValue={description}></textarea>
+        <label>
+          description
+          <textarea ref={descInput} cols="30" rows="10" defaultValue={description}></textarea>
+        </label>
       </div>
       <button type="submit">save</button>
     </form>

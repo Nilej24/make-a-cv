@@ -12,17 +12,25 @@ function Info(props) {
     description: 'some info about me',
   });
 
+  const fnInput = useRef();
+  const lnInput = useRef();
+  const emailInput = useRef();
+  const phoneInput = useRef();
+  const descInput = useRef();
+
+  const refs = {
+    fnInput, lnInput, emailInput, phoneInput, descInput
+  };
+
   const handleFormSubmit = (ev) => {
     ev.preventDefault();
 
-    const firstName = document.querySelector('#fname-edit').value;
-    const lastName = document.querySelector('#lname-edit').value;
-    const email = document.querySelector('#email-edit').value;
-    const phone = document.querySelector('#phone-edit').value;
-    const description = document.querySelector('#info-description-edit').value;
-
     setState({
-      firstName, lastName, email, phone, description
+      firstName: fnInput.current.value,
+      lastName: lnInput.current.value,
+      email: emailInput.current.value,
+      phone: phoneInput.current.value,
+      description: descInput.current.value,
     });
   }
 
@@ -31,7 +39,7 @@ function Info(props) {
   return (
     <div className="Info">
       <EditToggleBtn />
-      <InfoForm data={state} handleSubmit={handleFormSubmit} />
+      <InfoForm data={state} handleSubmit={handleFormSubmit} refs={refs} />
       <h1>{firstName} {lastName}</h1>
       <p>email: {email}</p>
       <p>phone: {phone}</p>
